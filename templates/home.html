@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home - Smart Health Risk Advisor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+      background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+        url("{{ url_for('static', filename='images/health.jpg') }}");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+
+      color: #333;
+      min-height: 100vh;
+    }
+
+    nav {
+      width: 100%;
+      background-color: #004080;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .nav-left a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      margin-right: 25px;
+      transition: color 0.3s;
+    }
+
+    .nav-left a:hover {
+      color: #ffcc00;
+    }
+
+    .nav-right input[type="text"] {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 0.9rem;
+      margin-left: 20px;
+    }
+
+    .page-title {
+      position: fixed;
+      top: 60px;
+      width: 100%;
+      text-align: center;
+      color:black;
+      font-size: 2rem;
+      z-index: 900;
+      padding: 12px 0;
+      font-weight: 700;
+      text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
+    }
+
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+      padding-top: 140px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 40px 50px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      backdrop-filter: blur(8px);
+    }
+
+    .card h2 {
+      color: #004080;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    .card button {
+      background-color: #004080;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    .card button:hover {
+      background-color: #0059b3;
+    }
+
+    @media (max-width: 500px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-right {
+        margin-top: 8px;
+      }
+      .content {
+        padding-top: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-left">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('form') }}">Predict</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+    <div class="nav-right">
+      <form action="#" method="get">
+        <input type="text" placeholder="Search...">
+      </form>
+    </div>
+  </nav>
+
+  <h1 class="page-title">Welcome to Smart Risk Prediction</h1>
+
+  <div class="content">
+    <div class="card">
+      <h2>Hello, {{ user }}!</h2>
+      <p>We are excited to help you predict your health risks. Start now to stay ahead in your wellness journey!</p>
+      <form action="{{ url_for('form') }}" method="get">
+        <button type="submit">Start Prediction</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

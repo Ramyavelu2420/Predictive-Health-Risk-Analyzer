@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prediction History - Smart Health Risk Advisor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f0f4f8, #d9e4ec);
+      color: #333;
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    nav {
+      width: 100%;
+      background-color: #004080;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .nav-left a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      margin-right: 25px;
+      transition: color 0.3s;
+    }
+
+    .nav-left a:hover {
+      color: #ffcc00;
+    }
+
+    .nav-right input[type="text"] {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 0.9rem;
+      margin-left: 20px;
+    }
+
+    .content {
+      padding: 100px 40px 40px 40px; /* leave space for navbar */
+    }
+
+    h2 {
+      color: #004080;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #004080;
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f7f9fc;
+    }
+
+    tr:hover {
+      background-color: #e6f0ff;
+    }
+
+    a.home-btn {
+      display: inline-block;
+      margin: 20px auto;
+      text-decoration: none;
+      color: white;
+      background-color: #004080;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    a.home-btn:hover {
+      background-color: #0059b3;
+    }
+
+    @media (max-width: 768px) {
+      th, td {
+        font-size: 0.85rem;
+        padding: 8px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-left">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('form') }}">Predict</a>
+      <a href="{{ url_for('history') }}">History</a>
+      <a href="{{ url_for('about') }}">About</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+    <div class="nav-right">
+      <form action="#" method="get">
+        <input type="text" placeholder="Search...">
+      </form>
+    </div>
+  </nav>
+
+  <div class="content">
+    <h2>Your Prediction History</h2>
+
+    {% if history %}
+      <table>
+        <tr>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Symptoms</th>
+          <th>Medical History</th>
+          <th>Medications</th>
+          <th>Lab Reports</th>
+          <th>Lifestyle</th>
+          <th>Prediction</th>
+        </tr>
+        {% for record in history %}
+        <tr>
+          <td>{{ record.data.age }}</td>
+          <td>{{ record.data.gender }}</td>
+          <td>{{ record.data.symptoms }}</td>
+          <td>{{ record.data.medical_history }}</td>
+          <td>{{ record.data.medications }}</td>
+          <td>{{ record.data.lab_reports }}</td>
+          <td>{{ record.data.lifestyle }}</td>
+          <td>{{ record.prediction }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+      <p style="text-align:center; margin-top:20px;">No history found. Start a new prediction!</p>
+    {% endif %}
+
+    <a href="{{ url_for('home') }}" class="home-btn">Back to Home</a>
+  </div>
+
+</body>
+</html>

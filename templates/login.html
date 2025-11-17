@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Smart Health Risk Advisor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #f0f4f8, #d9e4ec);
+      color: #333;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      margin: 120px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+    h2 { color: #003366; margin-bottom: 15px; }
+    label { display: block; text-align: left; margin-top: 10px; }
+    input { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #d7e1ea; }
+    .btn { width: 100%; background-color: #004080; color: white; padding: 10px; margin-top: 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    .btn:hover { background-color: #0059b3; }
+    .muted { margin-top: 12px; font-size: 0.9rem; }
+    .muted a { color: #004080; font-weight: 600; text-decoration: none; }
+    .flash { background: #ffecec; color: #7a0b0b; padding: 10px; border-radius: 8px; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form method="POST" action="{{ url_for('login') }}">
+      <label>Email</label>
+      <input type="email" name="email" required>
+      <label>Password</label>
+      <input type="password" name="password" required>
+      <button class="btn" type="submit">Login</button>
+    </form>
+    <p class="muted">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+  </div>
+</body>
+</html>
